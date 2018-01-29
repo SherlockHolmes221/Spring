@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop = "http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <aop:aspectj-autoproxy/>
+
+    <context:annotation-config></context:annotation-config>
+    <context:component-scan base-package="com.example"></context:component-scan>
+
+    <!--aop的xml方法-->
+
+     <bean name="logInterceptorAop" class="com.example.aop.LogInterceptorAop"></bean>
+
+    <aop:config>
+        <aop:pointcut id="servicePointcut" expression="execution(public * com.example.service..*.add(..))"></aop:pointcut>
+
+        <aop:aspect id="logAspect" ref="logInterceptorAop" >
+            <aop:before method="beforeMethod" pointcut-ref = "servicePointcut"></aop:before>
+
+            <!--<aop:before method="beforeMethod" pointcut="execution(public * com.example.service..*.add(..))"></aop:before>-->
+
+            <aop:after method="afterMethod" pointcut-ref="servicePointcut"></aop:after>
+            <aop:after-throwing method="throwMethod" pointcut-ref="servicePointcut"></aop:after-throwing>
+        </aop:aspect>
+        
+    </aop:config>
+
+    <!--aop的xml方法-->
+
+
+    <!--id name都可以-->
+    <bean name = "userDAO" class = "com.example.impl.UserDAOImpl">
+        <!--把简单属性配在程序里-->
+        <property name="daoId" value="1"></property>
+        <property name="daoStatus" value="normal"></property>
+
+        <!--集合注入-->
+        <property name="sets">
+            <set>
+                <value>1</value>
+                <value>2</value>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="1" value="1"></entry>
+                <entry key="2" value="2"></entry>
+                <entry key="3" value="3"></entry>
+            </map>
+        </property>
+        <property name="list">
+            <list>
+                <value>1</value>
+                <value>2</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <bean name = "userDAO1" class = "com.example.impl.UserDAOImpl">
+    </bean>
+
+    <bean name = "userService" class = "com.example.service.UserService" lazy-init="true" init-method="initial"
+       destroy-method="destroy" >
+        <!--<constructor-arg ref="userDAO">-->
+        <!--</constructor-arg>-->
+        <!--<property name ="UserDAO"  ref="userDAO">-->
+        <!--</property>-->
+    </bean>
+</beans>
+
