@@ -101,3 +101,14 @@
     
    如果之前已有，则不会创建新的
    `@Transactional(propagation = Propagation.REQUIRED)`
+   
+4. 设计模式
+`HibernateTemplate`
+
+第一种方式：
+
+(1)在spring初始化`HibernateTemplate`，注入`sessionFactory`,直接调用save()方法
+
+(2)DAO里面注入HibernateTemplate
+
+(3)save写getHibernateTemplate.save()

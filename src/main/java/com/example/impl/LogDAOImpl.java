@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
-@Component("logDAO")//默认为logDAOImpl
+//@Component("logDAO")//默认为logDAOImpl
 public class LogDAOImpl implements LogDAO {
 
 	private SessionFactory sessionFactory;

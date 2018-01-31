@@ -19,15 +19,14 @@ public class UserServiceTest {
         //从配置文件中读取信息,applicationContext中有多个UserDAO
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
 
-        UserDAO userDAO = (UserDAO) applicationContext.getBean("userDAO");
-        System.out.println(userDAO.toString());
+//        UserDAO userDAO = (UserDAO) applicationContext.getBean("userDAO");
+//        System.out.println(userDAO.toString());
 
         //获取指定的UserService
-        UserService userservice  = (UserService) applicationContext.getBean("userService");
+        UserService userservice  = (UserService) applicationContext.getBean("service");
 
         //获取指定的UserDAO
         //UserDAO userdao = (UserDAO) factory.getBean("u");
-
         //userservice.setUserDAO(userdao);
 
         User user = new User();
