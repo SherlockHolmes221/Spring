@@ -2,14 +2,20 @@ package com.example.impl;
 
 import com.example.dao.UserDAO;
 import com.example.model.User;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 @Component("u")//默认为userDAOImpl
 public class UserDAOImpl implements UserDAO {
+
+	private SessionFactory sessionFactory;
 
 	private int daoId;
 	private String daoStatus;
@@ -18,10 +24,24 @@ public class UserDAOImpl implements UserDAO {
 	private List<String>list;
 
 
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	@Resource
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
 	@Override
 	public void save(User user) {
 
-	    System.out.println(user.toString());
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.save(user);
+		session.getTransaction().commit();
+		System.out.println(user.toString());
+
 	    //throw  new RuntimeException("exception");
 	}
 

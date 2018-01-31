@@ -64,3 +64,7 @@
     `Target`
     `Weave`
 3. execution(public * com.example.impl.*.*(..))
+4. xml
+
+###Spring整合Hibernate
+1. Spring DataSource
