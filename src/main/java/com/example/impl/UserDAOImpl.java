@@ -36,10 +36,15 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void save(User user) {
 
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+//		Session session = sessionFactory.openSession();
+//		session.beginTransaction();
+//		session.save(user);
+//		session.getTransaction().commit();
+
+		//用Annotation进行声明式事务管理
+		Session session = sessionFactory.getCurrentSession();
 		session.save(user);
-		session.getTransaction().commit();
+
 		System.out.println(user.toString());
 
 	    //throw  new RuntimeException("exception");

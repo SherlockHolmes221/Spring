@@ -8,6 +8,7 @@ import com.example.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
@@ -45,13 +46,13 @@ public class UserService {
         this.logDAO = logDAO;
     }
 
-
     //	@Autowired
 //	public void setUserDAO(@Qualifier("userDAO") UserDAO userdao) {
 //		this.userdao = userdao;
 //	}
 
-    @Transactional
+
+    //@Transactional(propagation = Propagation.REQUIRED)
 	public void add(User user) {
 		this.userdao.save(user);
 		Log log = new Log();

@@ -14,7 +14,6 @@ public class LogDAOImpl implements LogDAO {
 
 	private SessionFactory sessionFactory;
 
-
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
@@ -27,11 +26,15 @@ public class LogDAOImpl implements LogDAO {
 	@Override
 	public void save(Log log) {
 
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.save(log);
-		session.getTransaction().commit();
-		System.out.println(log.toString());
+//		Session session = sessionFactory.openSession();
+//		session.beginTransaction();
+//		session.save(log);
+//		session.getTransaction().commit();
+//		System.out.println(log.toString());
+
+        //用Annotation进行声明式事务管理
+        Session session = sessionFactory.getCurrentSession();
+        session.save(log);
 
 	}
 

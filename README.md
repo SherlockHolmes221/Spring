@@ -68,6 +68,7 @@
 
 ###Spring整合Hibernate
 1. Spring DataSource
+
 `<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driverClassName}"/>
         <property name="url" value="${jdbc.url}"/>
@@ -93,6 +94,10 @@
            </property>
        </bean>`
 3. 事务管理
+
 `<bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="SessionFactory"/>
     </bean>`
+    
+   如果之前已有，则不会创建新的
+   `@Transactional(propagation = Propagation.REQUIRED)`
