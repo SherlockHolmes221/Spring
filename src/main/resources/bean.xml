@@ -79,9 +79,9 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="abstractDAO" class="com.example.impl.AbstractDAO">
-        <property name="hibernateTemplate" ref="hibernateTemplate"/>
-    </bean>
+    <!--<bean id="abstractDAO" class="com.example.impl.AbstractDAO">-->
+        <!--<property name="hibernateTemplate" ref="hibernateTemplate"/>-->
+    <!--</bean>-->
 
     <!--aop的xml方法-->
      <bean name="logInterceptorAop" class="com.example.aop.LogInterceptorAop"></bean>

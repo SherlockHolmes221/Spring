@@ -5,7 +5,7 @@ import com.example.model.Log;
 import org.springframework.stereotype.Component;
 
 @Component("logDAO")
-public class LogDAOTemplateImpl extends AbstractDAO implements LogDAO {
+public class LogDAOTemplateImpl extends SuperDAO implements LogDAO {
 
 	@Override
 	public void save(Log log){
