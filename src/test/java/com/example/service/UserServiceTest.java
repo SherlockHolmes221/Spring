@@ -5,11 +5,13 @@ import com.example.dao.UserDAO;
 import com.example.impl.UserDAOImpl;
 import com.example.model.User;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.lang.reflect.Proxy;
-
 
 public class UserServiceTest {
     @Test

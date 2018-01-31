@@ -1,14 +1,12 @@
-//UserDAO�������ݿ�����Լ���User��Ĳ���
-//�������ı��
-
 package com.example.dao;
 
 
-import com.example.model.User;
+import com.example.model.Log;
 
 public interface LogDAO {
-	
 
+    public default void save(Log log) {
+    }
 	
 	
 

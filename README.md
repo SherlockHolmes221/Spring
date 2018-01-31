@@ -10,7 +10,7 @@
 3. `id`可以有特殊字符
    `name`
    
-4. 简单属``性的注入
+4. 简单属性的注入
    `name`
    `value`
    
@@ -68,3 +68,31 @@
 
 ###Spring整合Hibernate
 1. Spring DataSource
+`<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>`
+2.  `  <bean id="SessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+           <property name="dataSource" ref="dataSource"/>
+           <property name="annotatedClasses">
+               <list>
+                   <value>com.example.model.User</value>
+               </list>
+           </property>
+           <property name="hibernateProperties">
+               <props>
+                   <prop key="hibernate.dialect">
+                       org.hibernate.dialect.HSQLDialect
+                   </prop>
+                   <prop key="hibernate.show_sql">
+                       true
+                   </prop>
+               </props>
+           </property>
+       </bean>`
+3. 事务管理
+`<bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="SessionFactory"/>
+    </bean>`

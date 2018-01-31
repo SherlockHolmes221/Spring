@@ -1,6 +1,3 @@
-//UserDAO�������ݿ�����Լ���User��Ĳ���
-//�������ı��
-
 package com.example.dao;
 
 
